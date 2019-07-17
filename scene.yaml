@@ -154,7 +154,7 @@ layers:
                     cap: round
                     join: round
                     color: [1.000,1.000,1.000]
-                    width: 1px
+                    width: 1.5px
             major_road:
                 filter: { kind: major_road }
                 draw:
@@ -177,7 +177,7 @@ layers:
             draw:
                 lines:
                     color: [1.000,1.000,1.000]
-                    width: [[5, 2px], [12, 4px]]
+                    width: [[5, 2px], [14, 4px], [19, 8px]]
                     # outline:
                     #     color: [0.900,0.900,0.900]
                     #     width: [[5, 0.5px], [8, 0.5px], [12, 1px]]
@@ -227,14 +227,14 @@ layers:
             draw:
                 lines:
                     color: [1.000,1.000,1.000]
-                    width: [[13,0px], [18,2px]]
+                    width: [[13,0px], [18,4px]]
 
         minor_road:
             filter: { kind: minor_road, not: { kind_detail: service }, $zoom: { min: 16 } }
             draw:
                 lines:
                     color: [1.000,1.000,1.000]
-                    width: [[16,0px], [18,1px]]
+                    width: [[16,0px], [18,2px]]
 
     landuse:
         data: { source: mapzen }
@@ -313,7 +313,7 @@ layers:
             # default for national forests and more?
             draw:
                 polygons:
-                    style: green-area-dots
+                    style: park-dots
                     color: [1.000,1.000,1.000]
                     visible: true
             national_park:
@@ -544,7 +544,7 @@ styles:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 18.0
-                DOTS_COLOR: vec3(0.960,0.960,0.960)
+                DOTS_COLOR: vec3(0.970,0.970,0.970)
 
     building-dots:
         base: polygons
@@ -562,11 +562,22 @@ styles:
         mix: [polygons-dots]
         shaders:
             defines:
-                DOTS_SIZE: 0.8
+                DOTS_SIZE: 0.7
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 9.0
                 DOTS_COLOR: vec3(0.880,0.880,0.880)
+
+    park-dots:
+        base: polygons
+        mix: [polygons-dots]
+        shaders:
+            defines:
+                DOTS_SIZE: 0.8
+                DOTS_TYPE: fill
+                DOTS_TILE_STYLE: tile
+                DOTS_SCALE: 12.0
+                DOTS_COLOR: vec3(0.920,0.920,0.920)
 
     polygons_transparent:
         base: polygons

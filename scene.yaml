@@ -215,6 +215,20 @@ layers:
                         outline:
                             cap: butt
 
+        major_road:
+            filter: { kind: major_road, $zoom: { min: 13 } }
+            draw:
+                lines:
+                    color: [1.000,1.000,1.000]
+                    width: [[13,0px], [18,2px]]
+
+        minor_road:
+            filter: { kind: minor_road, not: { kind_detail: service }, $zoom: { min: 16 } }
+            draw:
+                lines:
+                    color: [1.000,1.000,1.000]
+                    width: [[16,0px], [18,1px]]
+
     buildings:
         data: { source: mapzen, layer: buildings }
         filter:
@@ -242,119 +256,6 @@ layers:
                     style: building-dots
 
 styles:
-    tools-tilecoords:
-        shaders:
-            blocks:
-                global: |
-                    // Varying to be added to both vertex and fragment shaders
-                    varying vec2 v_pos;
-                    #ifdef TANGRAM_FRAGMENT_SHADER
-                    vec2 TileCoords() {
-                        return fract(v_pos);
-                    }
-                    #endif
-                position: |
-                    v_pos = modelPosition().xy;
-    tools-grid:
-        mix: tools-tilecoords
-        shaders:
-            blocks:
-                global: |
-                    #ifdef TANGRAM_FRAGMENT_SHADER
-                    bool grid(vec2 st, float res, float press) {
-                        vec2 grid = fract(st * res);
-                        return (grid.x < res * press) || (grid.y < res * press);
-                    }
-                    float TileGrid(float res) {
-                        vec2 st = TileCoords() * 100. * res;
-                        float pct = 0.0;
-                        float press = 0.3 + (1.0 - fract(u_map_position.z)) * 0.1;
-                        if (grid(st, 0.1, press)) { pct += 0.5; }
-                        return pct;
-                    }
-                    float TileGrid() {
-                        return mix(TileGrid(1.), TileGrid(2.), fract(u_map_position.z));
-                    }
-                    #endif
-    tools-grid2:
-        mix: tools-tilecoords
-        shaders:
-            blocks:
-                global: |
-                    #ifdef TANGRAM_FRAGMENT_SHADER
-                    bool grid(vec2 st, float res, float press) {
-                        vec2 grid = fract(st * res);
-                        return (grid.x < res * press) || (grid.y < res * press);
-                    }
-                    float TileGrid(float res) {
-                        vec2 st = TileCoords() * 320. * res;
-                        float pct = 0.0;
-                        float press = 0.6 + (1.0 - fract(u_map_position.z)) * 0.1;
-                        if (grid(st, 0.1, press)) { pct += 0.5; }
-                        return pct;
-                    }
-                    float TileGrid() {
-                        return mix(TileGrid(1.), TileGrid(2.), fract(u_map_position.z));
-                    }
-                    #endif
-
-    tools-grid3:
-        mix: tools-tilecoords
-        shaders:
-            blocks:
-                global: |
-                    #ifdef TANGRAM_FRAGMENT_SHADER
-                    bool grid(vec2 st, float res, float press) {
-                        vec2 grid = fract(st * res);
-                        return (grid.x < res * press) || (grid.y < res * press);
-                    }
-                    float TileGrid(float res) {
-                        vec2 st = TileCoords() * 480. * res;
-                        float pct = 0.0;
-                        float press = 0.8 + (1.0 - fract(u_map_position.z)) * 0.1;
-                        if (grid(st, 0.1, press)) { pct += 0.5; }
-                        return pct;
-                    }
-                    float TileGrid() {
-                        return mix(TileGrid(1.), TileGrid(2.), fract(u_map_position.z));
-                    }
-                    #endif
-    grid-earth:
-        base: polygons
-        mix: [tools-grid2]
-        shaders:
-            blocks:
-                filter: |
-                    color.rgb = vec3(1.00,1.00,1.00);
-                    color.rgb = mix(color.rgb, vec3(0.000,0.000,0.000), TileGrid());
-
-    grid-buildings:
-        base: polygons
-        mix: [tools-grid2]
-        shaders:
-            blocks:
-                filter: |
-                    color.rgb = vec3(1.00,1.00,1.00);
-                    color.rgb = mix(color.rgb, vec3(0.700,0.700,0.700), TileGrid());
-
-    grid-water:
-        base: polygons
-        mix: [tools-grid]
-        shaders:
-            blocks:
-                filter: |
-                    color.rgb = vec3(1.00,1.00,1.00);
-                    color.rgb = mix(color.rgb, vec3(0.400,0.400,0.400), TileGrid());
-
-    grid-green:
-        base: polygons
-        mix: [tools-grid3]
-        shaders:
-            blocks:
-                filter: |
-                    color.rgb = vec3(1.00,1.00,1.00);
-                    color.rgb = mix(color.rgb, vec3(0.000,0.000,0.000), TileGrid());
-
     earth-dots:
         base: polygons
         mix: [polygons-dots]
@@ -364,7 +265,6 @@ styles:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 18.0
-                DOTS_BACKGROUND_COLOR: vec3(1.000,1.000,1.000)
                 DOTS_COLOR: vec3(0.880,0.880,0.880)
 
     water-dots:
@@ -376,7 +276,6 @@ styles:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 18.0
-                DOTS_BACKGROUND_COLOR: vec3(1.000,1.000,1.000)
                 DOTS_COLOR: vec3(0.960,0.960,0.960)
 
     building-dots:
@@ -388,7 +287,6 @@ styles:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 18.0
-                DOTS_BACKGROUND_COLOR: vec3(1.000,1.000,1.000)
                 DOTS_COLOR: vec3(0.770,0.770,0.770)
 
     polygons_transparent:
@@ -450,7 +348,7 @@ styles:
         shaders:
             defines:
                 DOTS_COLOR: color.rgb*.5
-                DOTS_BACKGROUND_COLOR: color.rgb
+                DOTS_BACKGROUND_COLOR: vec3(1.000,1.000,1.000)
                 DOTS_SCALE: 10.
                 DOTS_SIZE: 0.41
                 DOTS_TYPE: fill
@@ -511,23 +409,6 @@ styles:
                     float circleBorder (vec2 st, float radius) {
                         return stroke(radius, circleDF(st-vec2(0.5)));
                     }
-
-    block:
-        shaders:
-            defines:
-                ADD: '+'
-                SUBTRACT: '-'
-                MULTIPLY: '*'
-
-                PI: 3.1415926535897932384626433832795
-                TWO_PI: 6.2831853071795864769252867665590
-                HALF_PI: 1.5707963267948966192313216916398
-                QUATER_PI: .785398163
-
-                EPSILON: 0.0000001
-
-                deg2rad(d): (((d)*3.1415926535897932384626433832795)/180.0)
-                rad2deg(d): (((d)*180.0)/3.1415926535897932384626433832795)
 
     space-tile:
         doc:
@@ -643,214 +524,6 @@ styles:
                     float stroke (in float size, in float x) {
                         return aastep(size, x+STROKE*.5) - aastep(size, x-STROKE*.5);
                     }
-
-    functions-zoom:
-        doc:
-            author:
-                name: Patricio Gonzalez Vivo
-                twitter: patriciogv
-            version: 0.0.1
-            tangram-version: 0.0.7
-            licence: MIT
-            description: |
-                when you mix this block to another block you can use the functions `zoom()` or `zoomEase()`. Both will help you to interpolate any values between the zooms `ZOOM_START` and `ZOOM_END`.
-                By default `zoom()` and `zoomEase()` will return a `float `number between 0 and 1. But you can change it to interpolate any thing! Like `floats`, `vec2`, `vec3`, `vec4` and even other functions! For that you just need to change de `defines`: `ZOOM_IN`, and `ZOOM_OUT` to what ever you want to interpolate.
-                `zoom()` use the cuadratic interpolation of `smoothstep()` but you can use `zoomEase()` to specify what type of **easing interpolation** you prefere. Just change the default `linear` function for any [easing functions describe here](#functions-easing) in the `ZOOM_FNC` define. Ex: `ZOOM_FNC: quadraticInOut`
-        mix: [functions-easing]
-        shaders:
-            defines:
-                ZOOM_START: 14.
-                ZOOM_END: 20.
-                ZOOM_MAX: max(ZOOM_START, ZOOM_END)
-                ZOOM_FNC: linear
-                ZOOM_IN: 0.0
-                ZOOM_OUT: 1.0
-            blocks:
-                global: |
-                    float zoom() {
-                        return mix( ZOOM_IN,
-                                    ZOOM_OUT,
-                                    clamp( smoothstep(  ZOOM_START/ZOOM_MAX,
-                                                        ZOOM_END/ZOOM_MAX,
-                                                        max(u_map_position.z/ZOOM_MAX, 0.)), 0., 1.) );
-                    }
-                    float zoomEase() {
-                        return mix( ZOOM_IN,
-                                    ZOOM_OUT,
-                                    ZOOM_FNC( (u_map_position.z-ZOOM_START)/(ZOOM_END-ZOOM_START) ) );
-                    }
-    functions-easing:
-        doc:
-            author:
-                name: StackGL
-                url: http://stack.gl/
-            version: 0.0.1
-            tangram-version: 0.0.7
-            licence: MIT
-            description: |
-                Easing functions originally develop by Robert Penner's and transformed to GLSL by [StackGL](http://stack.gl/) in this repo: <https://github.com/stackgl/glsl-easings>
-        shaders:
-            defines:
-                PI: 3.1415926535897932384626433832795
-                HALF_PI: 1.5707963267948966192313216916398
-            blocks:
-                global: |
-                    float linear (in float t) {
-                        return t;
-                    }
-                    float exponentialIn (in float t) {
-                        return t == 0.0 ? t : pow(2.0, 10.0 * (t - 1.0));
-                    }
-                    float exponentialOut (in float t) {
-                        return t == 1.0 ? t : 1.0 - pow(2.0, -10.0 * t);
-                    }
-                    float exponentialInOut (in float t) {
-                        return t == 0.0 || t == 1.0
-                        ? t
-                        : t < 0.5
-                            ? +0.5 * pow(2.0, (20.0 * t) - 10.0)
-                            : -0.5 * pow(2.0, 10.0 - (t * 20.0)) + 1.0;
-                    }
-                    float sineIn (in float t) {
-                        return sin((t - 1.0) * HALF_PI) + 1.0;
-                    }
-                    float sineOut (in float t) {
-                        return sin(t * HALF_PI);
-                    }
-                    float sineInOut (in float t) {
-                        return -0.5 * (cos(PI * t) - 1.0);
-                    }
-                    float qinticIn (in float t) {
-                        return pow(t, 5.0);
-                    }
-                    float qinticOut (in float t) {
-                        return 1.0 - (pow(t - 1.0, 5.0));
-                    }
-                    float qinticInOut (in float t) {
-                        return t < 0.5
-                            ? +16.0 * pow(t, 5.0)
-                            : -0.5 * pow(2.0 * t - 2.0, 5.0) + 1.0;
-                    }
-                    float quarticIn (in float t) {
-                        return pow(t, 4.0);
-                    }
-                    float quarticOut (in float t) {
-                        return pow(t - 1.0, 3.0) * (1.0 - t) + 1.0;
-                    }
-                    float quarticInOut (in float t) {
-                        return t < 0.5
-                            ? +8.0 * pow(t, 4.0)
-                            : -8.0 * pow(t - 1.0, 4.0) + 1.0;
-                    }
-                    float quadraticInOut (in float t) {
-                        float p = 2.0 * t * t;
-                        return t < 0.5 ? p : -p + (4.0 * t) - 1.0;
-                    }
-                    float quadraticIn (in float t) {
-                        return t * t;
-                    }
-                    float quadraticOut (in float t) {
-                        return -t * (t - 2.0);
-                    }
-                    float cubicIn (in float t) {
-                        return t * t * t;
-                    }
-                    float cubicOut (in float t) {
-                        float f = t - 1.0;
-                        return f * f * f + 1.0;
-                    }
-                    float cubicInOut (in float t) {
-                        return t < 0.5
-                            ? 4.0 * t * t * t
-                            : 0.5 * pow(2.0 * t - 2.0, 3.0) + 1.0;
-                    }
-                    float elasticIn (in float t) {
-                        return sin(13.0 * t * HALF_PI) * pow(2.0, 10.0 * (t - 1.0));
-                    }
-                    float elasticOut (in float t) {
-                        return sin(-13.0 * (t + 1.0) * HALF_PI) * pow(2.0, -10.0 * t) + 1.0;
-                    }
-                    float elasticInOut (in float t) {
-                        return t < 0.5
-                            ? 0.5 * sin(+13.0 * HALF_PI * 2.0 * t) * pow(2.0, 10.0 * (2.0 * t - 1.0))
-                            : 0.5 * sin(-13.0 * HALF_PI * ((2.0 * t - 1.0) + 1.0)) * pow(2.0, -10.0 * (2.0 * t - 1.0)) + 1.0;
-                    }
-                    float circularIn (in float t) {
-                        return 1.0 - sqrt(1.0 - t * t);
-                    }
-                    float circularOut (in float t) {
-                        return sqrt((2.0 - t) * t);
-                    }
-                    float circularInOut (in float t) {
-                        return t < 0.5
-                            ? 0.5 * (1.0 - sqrt(1.0 - 4.0 * t * t))
-                            : 0.5 * (sqrt((3.0 - 2.0 * t) * (2.0 * t - 1.0)) + 1.0);
-                    }
-                    float bounceOut (in float t) {
-                        const float a = 4.0 / 11.0;
-                        const float b = 8.0 / 11.0;
-                        const float c = 9.0 / 10.0;
-                        const float ca = 4356.0 / 361.0;
-                        const float cb = 35442.0 / 1805.0;
-                        const float cc = 16061.0 / 1805.0;
-                        float t2 = t * t;
-                        return t < a
-                        ? 7.5625 * t2
-                        : t < b
-                            ? 9.075 * t2 - 9.9 * t + 3.4
-                            : t < c
-                                ? ca * t2 - cb * t + cc
-                                : 10.8 * t * t - 20.52 * t + 10.72;
-                    }
-                    float bounceIn (in float t) {
-                        return 1.0 - bounceOut(1.0 - t);
-                    }
-                    float bounceInOut (in float t) {
-                        return t < 0.5
-                        ? 0.5 * (1.0 - bounceOut(1.0 - t * 2.0))
-                        : 0.5 * bounceOut(t * 2.0 - 1.0) + 0.5;
-                    }
-                    float backIn (in float t) {
-                        return pow(t, 3.0) - t * sin(t * PI);
-                    }
-                    float backOut (in float t) {
-                        float f = 1.0 - t;
-                        return 1.0 - (pow(f, 3.0) - f * sin(f * PI));
-                    }
-                    float backInOut (in float t) {
-                        float f = t < 0.5
-                        ? 2.0 * t
-                        : 1.0 - (2.0 * t - 1.0);
-                        float g = pow(f, 3.0) - f * sin(f * PI);
-                        return t < 0.5
-                        ? 0.5 * g
-                        : 0.5 * (1.0 - g) + 0.5;
-                    }
-
-    geometry-normal:
-        doc:
-            author:
-                name: Patricio Gonzalez Vivo
-                twitter: patriciogv
-            version: 0.0.1
-            tangram-version: 0.0.7
-            licence: MIT
-            description: |
-                Functions to detect if the surface is a wall (`bool isWall()`) or a roof ('bool isRoof()') based on the normals
-        shaders:
-            blocks:
-                global: |
-                    #ifdef TANGRAM_FRAGMENT_SHADER
-                    // Ask to the geometry normals if this surface is a Wall
-                    bool isWall () {
-                        return dot(vec3(0., 0., 1.), worldNormal()) < 1.0 - TANGRAM_EPSILON;
-                    }
-                    //
-                    // Ask to the geometry normals if this surface is a roof
-                    bool isRoof () {
-                        return !isWall();
-                    }
-                    #endif
 
     functions-aastep:
         doc:

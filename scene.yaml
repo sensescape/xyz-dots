@@ -116,10 +116,8 @@ layers:
         data: { source: mapzen, layer: roads }
         draw:
             lines:
-                #color: black
                 width: 1px
                 order: global.feature_order
-                # but give them all the same outline
                 outline:
                     order: 352
 
@@ -128,15 +126,6 @@ layers:
             draw:
                 lines:
                     outline:
-                        order: global.feature_order
-
-        bridges-tunnels:
-            filter: { any: [is_bridge: true, is_tunnel: true] }
-            draw:
-                lines:
-                    # cap: butt
-                    outline:
-                        # except bridges and tunnels, their outlines should also self-sort
                         order: global.feature_order
 
         # default outlines starting at zoom 16
@@ -154,65 +143,47 @@ layers:
                     cap: round
                     join: round
                     color: [1.000,1.000,1.000]
-                    width: 1.5px
+                    width: 1px
             major_road:
                 filter: { kind: major_road }
                 draw:
                     lines:
                         color: [1.000,1.000,1.000]
-                        width: 1px
-            minor_road:
-                filter: { kind: minor_road }
-                draw:
-                    lines:
-                        color: [1.000,1.000,1.000]
-                        width: 1px
+                        width: 0.5px
             ferry:
                 filter: { kind: ferry }
                 draw:
                     lines:
                         visible: false
+
         highway:
             filter: { kind: highway, $zoom: { min: 8 } }
             draw:
                 lines:
                     color: [1.000,1.000,1.000]
-                    width: [[5, 2px], [14, 4px], [19, 8px]]
-                    # outline:
-                    #     color: [0.900,0.900,0.900]
-                    #     width: [[5, 0.5px], [8, 0.5px], [12, 1px]]
+                    width: [[5, 0px], [10, 2px], [15, 3px], [17, 8px], [18, 10m]]
 
             link:
                 filter: { is_link: true } # on- and off-ramps, etc
                 draw:
                     lines:
                         color: [1.000,1.000,1.000]
-                        width: [[5, 1px], [12, 2px]]
-                        cap: butt
-                        # outline:
-                        #     color: [0.900,0.900,0.900]
-                        #     width: [[5, 0.5px], [12, 1px]]
-                early_link:
-                    filter: { $zoom: { max: 15 } }
-                    draw:
-                        lines:
-                            # except bridges and tunnels, their outlines should also self-sort
-                            order: 352
+                        width: [[8, 0.25px], [15, 1.25px], [18, 7px]]
                 tunnel-link:
                     filter: {is_tunnel: true, $zoom: {min: 13} }
                     draw:
                         lines:
-                            color: [1.000,1.000,1.000]
-                            # outline:
-                            #     color: [0.900,0.900,0.900]
+                            style: lines_transparent
+                            color: [0.650,0.650,0.650,0.5]
 
             tunnel:
                 filter: {is_tunnel: true, $zoom: {min: 13} }
                 draw:
                     lines:
-                        color: [1.000,1.000,1.000]
-                        # outline:
-                        #     color: [0.900,0.900,0.900]
+                        # style: lines_transparent
+                        # color: [0.650,0.650,0.650,0.5]
+                        # style: lines-stripes
+                        color: [0.950,0.950,0.950]
 
             highway_bridge:
                 filter: {is_bridge: true}
@@ -223,18 +194,90 @@ layers:
                             cap: butt
 
         major_road:
-            filter: { kind: major_road, $zoom: { min: 13 } }
+            filter: { kind: major_road, $zoom: { min: 11 } }
+            # default style
             draw:
                 lines:
                     color: [1.000,1.000,1.000]
-                    width: [[13,0px], [18,4px]]
+                    width: [[13, 0px], [16,1px], [18, 4px]]
+            trunk_primary:
+                filter: { kind_detail: [trunk, primary] }
+                draw:
+                    lines:
+                        color: [1.000,1.000,1.000]
+                        width: [[12, 0px], [13, 1px], [15, 3px], [17, 8px], [18, 10m]]
+                routes:
+                    filter: { ref: true }
+                    draw:
+                        lines:
+                            color: [1.000,1.000,1.000]
+                            width: [[11, 1px], [15, 3px], [17, 8px], [18, 10m]]
+                    tunnel:
+                        filter: { is_tunnel: true, $zoom: { min: 13 } }
+                        draw:
+                            lines:
+                                # style: lines_transparent
+                                # color: [0.650,0.650,0.650,0.5]
+                                # style: lines-stripes
+                                color: [0.950,0.950,0.950]
+            link:
+                filter: { is_link: true } # on- and off-ramps, etc
+                draw:
+                    lines:
+                        color: [1.000,1.000,1.000]
+                        width: [[11, 0.25px], [15, 1.25px], [18, 4px]]
+            tunnel:
+                filter: { is_tunnel: true, $zoom: { min: 13 } }
+                draw:
+                    lines:
+                        # style: lines_transparent
+                        # color: [0.650,0.650,0.650,0.5]
+                        # style: lines-stripes
+                        color: [0.950,0.950,0.950]
+            secondary:
+                filter: { kind_detail: secondary }
+                draw:
+                    lines:
+                        color: [1.000,1.000,1.000]
+                        width: [[13,0px], [15,1px], [16,3px], [18, 6m]]
+                        outline:
+                            width: 0px
+                tunnel:
+                    filter: {is_tunnel: true, $zoom: { min: 13 } }
+                    draw:
+                        lines:
+                            # style: lines_transparent
+                            # color: [0.650,0.650,0.650,0.5]
+                            # style: lines-stripes
+                            color: [0.950,0.950,0.950]
+
+
+            tertiary:
+                filter: { kind_detail: [tertiary, tertiary_link] }
+                draw:
+                    lines:
+                        color: [1.000,1.000,1.000]
+                        width: [[15,0px], [17,3px], [18, 3m]]
+                        outline:
+                            width: 0px
+                tunnel:
+                    filter: { is_tunnel: true, $zoom: { min: 13 } }
+                    draw:
+                        lines:
+                            style: lines_transparent
+                            color: [0.650,0.650,0.650,0.5]
+                link:
+                    filter: { is_link: true } # on- and off-ramps, etc
+                    draw:
+                        lines:
+                            color: [1.000,1.000,1.000]
 
         minor_road:
             filter: { kind: minor_road, not: { kind_detail: service }, $zoom: { min: 16 } }
             draw:
                 lines:
                     color: [1.000,1.000,1.000]
-                    width: [[16,0px], [18,2px]]
+                    width: [[17,0px], [18,3px]]
 
     landuse:
         data: { source: mapzen }
@@ -520,6 +563,10 @@ layers:
                             size: [[9, 10px], [14, 11px], [15, 0px]]
 
 styles:
+    lines_transparent:
+        base: lines
+        blend: overlay
+
     dots3:
         blend: inlay
         mix: tools

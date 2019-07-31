@@ -566,39 +566,6 @@ styles:
     lines_transparent:
         base: lines
         blend: overlay
-
-    dots3:
-        blend: inlay
-        mix: tools
-        base: polygons
-        shaders:
-            defines:
-                    BACKGROUND: vec3(1.000,0.908,0.000)
-            blocks:
-                global: |
-                    vec2 tile(vec2 _st, float _zoom){
-                      _st *= _zoom;
-                      return fract(_st);
-                    }
-
-                    vec2 brickTile(vec2 _st, float _zoom){
-                        _st *= _zoom;
-                        if (fract(_st.y * 0.5) > 0.5){
-                            _st.x += 0.5;
-                        }
-                        return fract(_st);
-                    }
-
-                    float circle(vec2 _st, float _radius){
-                      vec2 pos = vec2(0.5)-_st;
-                      return smoothstep(1.0-_radius,1.0-_radius+_radius*0.2,1.-dot(pos,pos)*3.14);
-                    }
-                color: |
-                    vec2 st = TileCoords();
-                    st = tile(st,10.0);
-                    float b = circle(st,0.2);
-                filter: |
-                    color *= vec4(b);
                     
     text-blend-order:
         base: text
@@ -613,7 +580,7 @@ styles:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 18.0
-                DOTS_COLOR: vec3(0.880,0.880,0.880)
+                DOTS_COLOR: vec3(0.850,0.850,0.850)
 
     water-dots:
         base: polygons
@@ -624,7 +591,7 @@ styles:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 18.0
-                DOTS_COLOR: vec3(0.955,0.955,0.955)
+                DOTS_COLOR: vec3(0.940,0.940,0.940)
 
     building-dots:
         base: polygons
@@ -635,7 +602,7 @@ styles:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 18.0
-                DOTS_COLOR: vec3(0.770,0.770,0.770)
+                DOTS_COLOR: vec3(0.700,0.700,0.700)
 
     green-area-dots:
         base: polygons
@@ -646,7 +613,7 @@ styles:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 9.0
-                DOTS_COLOR: vec3(0.880,0.880,0.880)
+                DOTS_COLOR: vec3(0.830,0.830,0.830)
 
     park-dots:
         base: polygons
@@ -657,7 +624,7 @@ styles:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 12.0
-                DOTS_COLOR: vec3(0.880,0.880,0.880)
+                DOTS_COLOR: vec3(0.840,0.840,0.840)
 
     polygons_transparent:
         base: polygons

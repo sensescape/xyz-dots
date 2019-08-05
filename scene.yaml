@@ -356,7 +356,7 @@ layers:
             # default for national forests and more?
             draw:
                 polygons:
-                    style: park-dots
+                    style: park-dots-multi
                     color: [1.000,1.000,1.000]
                     visible: true
             national_park:
@@ -626,6 +626,19 @@ styles:
                 DOTS_SCALE: 12.0
                 DOTS_COLOR: vec3(0.840,0.840,0.840)
 
+    park-dots-multi:
+        base: polygons
+        mix: [polygons-dots-multi]
+        shaders:
+            defines:
+                DOTS_TYPE: fill
+                DOTS_TILE_STYLE: tile
+                DOTS_SCALE: 12.0
+                DOTS_SIZE: 0.25
+                DOTS_COLOR: vec3(0.93)
+                DOTS_SIZE2: 0.8
+                DOTS_COLOR2: vec3(0.790,0.790,0.790)
+
     polygons_transparent:
         base: polygons
         blend: overlay
@@ -695,6 +708,30 @@ styles:
                     color.rgb = mix(DOTS_BACKGROUND_COLOR,
                                     DOTS_COLOR,
                                     DOTS_TYPE( DOTS_SIZE, circleDF(vec2(0.5)-DOTS_TILE_STYLE(getTileCoords()*DOTS_SCALE,2.))) );
+
+    polygons-dots-multi:
+        base: polygons
+        mix: [space-tile, tiling-brick, tiling-tile, shapes-circle]
+        shaders:
+            defines:
+                DOTS_BACKGROUND_COLOR: vec3(1.)
+                DOTS_COLOR: vec3(0.8, 0.8, 0.)
+                DOTS_COLOR2: vec3(0.5, 0., 0.)
+                DOTS_SIZE: 0.1
+                DOTS_SIZE2: 0.4
+                DOTS_SCALE: 10.
+                DOTS_TYPE: fill
+                DOTS_TILE_STYLE: brick
+            blocks:
+                color: |
+                    color.rgb =
+                        mix(DOTS_BACKGROUND_COLOR,
+                            mix(DOTS_COLOR2,
+                                DOTS_COLOR,
+                                DOTS_TYPE(DOTS_SIZE, circleDF(vec2(0.5)-DOTS_TILE_STYLE(getTileCoords()*DOTS_SCALE,2.)))
+                            ),
+                            DOTS_TYPE(DOTS_SIZE2, circleDF(vec2(0.5)-DOTS_TILE_STYLE(getTileCoords()*DOTS_SCALE,2.)))
+                        );
 
     shapes-circle:
         doc:

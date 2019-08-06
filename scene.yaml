@@ -69,6 +69,7 @@ layers:
         draw:
             polygons:
                 style: earth-dots
+                # style: polygons-dots-multi3
                 order: global.feature_order
                 color: [0.000,0.498,0.831]
 
@@ -731,6 +732,36 @@ styles:
                                 DOTS_TYPE(DOTS_SIZE, circleDF(vec2(0.5)-DOTS_TILE_STYLE(getTileCoords()*DOTS_SCALE,2.)))
                             ),
                             DOTS_TYPE(DOTS_SIZE2, circleDF(vec2(0.5)-DOTS_TILE_STYLE(getTileCoords()*DOTS_SCALE,2.)))
+                        );
+
+
+    polygons-dots-multi3:
+        base: polygons
+        mix: [space-tile, tiling-brick, tiling-tile, shapes-circle]
+        shaders:
+            defines:
+                DOTS_BACKGROUND_COLOR: vec3(1.)
+                DOTS_COLOR: vec3(0.8, 0.8, 0.)
+                DOTS_COLOR2: vec3(1.0, 0.0, 0.)
+                DOTS_COLOR3: vec3(0.0, 1.0, 1.0)
+                DOTS_SIZE: 0.15
+                DOTS_SIZE2: 0.5
+                DOTS_SIZE3: 0.9
+                DOTS_SCALE: 12.
+                DOTS_TYPE: fill
+                DOTS_TILE_STYLE: tile
+            blocks:
+                color: |
+                    color.rgb =
+                        mix(DOTS_BACKGROUND_COLOR,
+                            mix(DOTS_COLOR2,
+                                mix(DOTS_COLOR3,
+                                DOTS_COLOR,
+                                DOTS_TYPE(DOTS_SIZE, circleDF(vec2(0.5)-DOTS_TILE_STYLE(getTileCoords()*DOTS_SCALE,2.)))
+                            ),
+                                DOTS_TYPE(DOTS_SIZE2, circleDF(vec2(0.5)-DOTS_TILE_STYLE(getTileCoords()*DOTS_SCALE,2.)))
+                            ),
+                            DOTS_TYPE(DOTS_SIZE3, circleDF(vec2(0.5)-DOTS_TILE_STYLE(getTileCoords()*DOTS_SCALE,2.)))
                         );
 
     shapes-circle:

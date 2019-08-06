@@ -637,7 +637,7 @@ styles:
                 DOTS_SIZE: 0.25
                 DOTS_COLOR: vec3(0.93)
                 DOTS_SIZE2: 0.8
-                DOTS_COLOR2: vec3(0.790,0.790,0.790)
+                DOTS_COLOR2: vec3(0.800,0.800,0.800)
 
     polygons_transparent:
         base: polygons

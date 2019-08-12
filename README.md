@@ -2,15 +2,16 @@
 
 
 
+###
 
+The dot is pure potentiality.
 
+###
 
 
 
 
 # graphic series
-
-The dot is pure potentiality.
 
 View the map [dot map](https://sensescape.github.io/xyz-dots/#12/37.7823/-122.4274).
 

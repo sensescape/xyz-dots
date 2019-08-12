@@ -3,9 +3,13 @@
 
 
 ###
+###
+###
 
 The dot is pure potentiality.
 
+###
+###
 ###
 
 

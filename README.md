@@ -21,8 +21,7 @@ The dot is pure potentiality.
 .
 
 
-
-### dot
+![DOT](https://raw.githubusercontent.com/sensescape/xyz-dots/master/images/dots-title3.jpg)
 
 View the [xyz dot map](https://sensescape.github.io/xyz-dots/#12/37.7823/-122.4274).
 

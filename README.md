@@ -1,4 +1,4 @@
-![GRAPHIC SERIES](https://raw.githubusercontent.com/sensescape/xyz-dots/master/images/dots-title.jpg)
+![GRAPHIC SERIES](https://raw.githubusercontent.com/sensescape/xyz-dots/master/images/dots-title2.jpg)
 
 
 

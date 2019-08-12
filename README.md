@@ -22,7 +22,7 @@ The dot is pure potentiality.
 
 
 
-# dot
+### dot
 
 View the [xyz dot map](https://sensescape.github.io/xyz-dots/#12/37.7823/-122.4274).
 

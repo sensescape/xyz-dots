@@ -4,6 +4,8 @@ The simplest possible [Tangram](http://github.com/tangrams/tangram) setup.
 
 Live demo: http://tangrams.github.io/simple-demo/
 
+![GRAPHIC SERIES](https://raw.githubusercontent.com/sensescape/xyz-dots/master/images/dots-title.jpg)
+
 ![tangram-demo screenshot](https://cloud.githubusercontent.com/assets/459970/6629470/c007b1de-c8e4-11e4-854e-fd69f5135b3a.png)
 
 ### To run locally:

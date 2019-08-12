@@ -1,4 +1,4 @@
-![GRAPHIC SERIES](https://raw.githubusercontent.com/sensescape/xyz-dots/master/images/graphic_series_title.png)
+![GRAPHIC SERIES](https://raw.githubusercontent.com/sensescape/xyz-dots/master/images/dots-title2.jpg)
 
 
 
@@ -21,7 +21,7 @@ The dot is pure potentiality.
 .
 
 
-![DOT](https://raw.githubusercontent.com/sensescape/xyz-dots/master/images/dot_title.png)
+![DOT](https://raw.githubusercontent.com/sensescape/xyz-dots/master/images/dot_title_large.png)
 
 View the [xyz dot map](https://sensescape.github.io/xyz-dots/#12/37.7823/-122.4274).
 

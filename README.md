@@ -27,6 +27,8 @@ The dot is pure potentiality.
 
 View the [xyz dot map](https://sensescape.github.io/xyz-dots/#12/37.7823/-122.4274).
 
+[https://explore.xyz.here.com](https://explore.xyz.here.com)
+
 ### To run locally:
 
 Download this repo, then start a web server in its directory:

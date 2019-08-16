@@ -1095,9 +1095,9 @@ styles:
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 12.0
                 DOTS_SIZE: 0.1
-                DOTS_COLOR: vec3(0.79)
+                DOTS_COLOR: vec3(0.94)
                 DOTS_SIZE2: 0.7
-                DOTS_COLOR2: vec3(0.900,0.900,0.900)
+                DOTS_COLOR2: vec3(0.890,0.890,0.890)
 
     polygons_transparent:
         base: polygons

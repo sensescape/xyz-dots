@@ -732,7 +732,7 @@ layers:
                     - protect_class: ['2','3','5']
             draw:
                 polygons:
-                    style: green-area-dots
+                    style: park-dots-multi
                     color: [1.000,1.000,1.000]
                     visible: true
             us_national_park:
@@ -743,7 +743,7 @@ layers:
                         - protect_class: ['2','3','5']
                 draw:
                     polygons:
-                        style: green-area-dots
+                        style: park-dots-multi
                         color: [1.000,1.000,1.000]
                         visible: true
 
@@ -754,7 +754,7 @@ layers:
                 not: { protect_class: ['2','3','5']}
             draw:
                 polygons:
-                    style: green-area-dots
+                    style: conservation-dots-multi
                     color: [1.000,1.000,1.000]
                     visible: true
 
@@ -775,7 +775,7 @@ layers:
             filter: { kind: [forest, natural_forest, wood, natural_wood, natural_park], $zoom: { min: 10 }, not: { operator: "United States Forest Service" } }
             draw:
                 polygons:
-                    style: green-area-dots
+                    style: forest-dots-multi
                     color: [1.000,1.000,1.000]
                     visible: true
 
@@ -790,7 +790,7 @@ layers:
             # default for national forests and more?
             draw:
                 polygons:
-                    style: park-dots-multi
+                    style: green-area-dots
                     color: [1.000,1.000,1.000]
                     visible: true
             national_park:
@@ -1047,7 +1047,7 @@ styles:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 9.0
-                DOTS_COLOR: vec3(0.870,0.870,0.870)
+                DOTS_COLOR: vec3(0.910,0.910,0.910)
 
     park-dots:
         base: polygons
@@ -1060,7 +1060,7 @@ styles:
                 DOTS_SCALE: 12.0
                 DOTS_COLOR: vec3(0.840,0.840,0.840)
 
-    park-dots-multi:
+    forest-dots-multi:
         base: polygons
         mix: [polygons-dots-multi]
         shaders:
@@ -1069,9 +1069,35 @@ styles:
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 12.0
                 DOTS_SIZE: 0.25
-                DOTS_COLOR: vec3(0.93)
+                DOTS_COLOR: vec3(0.91)
                 DOTS_SIZE2: 0.8
-                DOTS_COLOR2: vec3(0.800,0.800,0.800)
+                DOTS_COLOR2: vec3(0.850,0.850,0.850)
+
+    conservation-dots-multi:
+        base: polygons
+        mix: [polygons-dots-multi]
+        shaders:
+            defines:
+                DOTS_TYPE: fill
+                DOTS_TILE_STYLE: tile
+                DOTS_SCALE: 12.0
+                DOTS_SIZE: 0.05
+                DOTS_COLOR: vec3(0.91)
+                DOTS_SIZE2: 0.7
+                DOTS_COLOR2: vec3(0.860,0.860,0.860)
+
+    park-dots-multi:
+        base: polygons
+        mix: [polygons-dots-multi]
+        shaders:
+            defines:
+                DOTS_TYPE: fill
+                DOTS_TILE_STYLE: tile
+                DOTS_SCALE: 12.0
+                DOTS_SIZE: 0.1
+                DOTS_COLOR: vec3(0.79)
+                DOTS_SIZE2: 0.7
+                DOTS_COLOR2: vec3(0.900,0.900,0.900)
 
     polygons_transparent:
         base: polygons

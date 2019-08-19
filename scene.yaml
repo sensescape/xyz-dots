@@ -19,16 +19,16 @@ global:
     # https://mapzen.com/documentation/overview/#developer-accounts-and-api-keys
     sdk_api_key: '3eqm2_bfTNGZ85ar20fVyA'     # set this value to your Mapzen API key
 
-    black_color:                  [0.790,0.790,0.790]
-    dark_color:                   [0.800,0.800,0.800]
-    mid_color:                    [0.810,0.810,0.810]
-    midlight_color:               [0.820,0.820,0.820]
-    extralight_color:             [0.830,0.830,0.830]
-    light_color:                  [0.840,0.840,0.840]
-    lighter_color:                [0.850,0.850,0.850]
-    lightest_color:               [0.860,0.860,0.860]
-    ultralight_color:             [0.910,0.910,0.910]
-    offwhite_color:               [0.960,0.960,0.960]
+    black_color:                  [0.810,0.810,0.810]
+    dark_color:                   [0.820,0.820,0.820]
+    mid_color:                    [0.830,0.830,0.830]
+    midlight_color:               [0.840,0.840,0.840]
+    extralight_color:             [0.850,0.850,0.850]
+    light_color:                  [0.860,0.860,0.860]
+    lighter_color:                [0.870,0.870,0.870]
+    lightest_color:               [0.880,0.880,0.880]
+    ultralight_color:             [0.950,0.950,0.950]
+    offwhite_color:               [0.980,0.980,0.980]
     white_color:                  [1.000,1.000,1.000]
 
     text_font_family: 'Orbitron'
@@ -1014,7 +1014,7 @@ styles:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 18.0
-                DOTS_COLOR: vec3(0.900,0.900,0.900)
+                DOTS_COLOR: vec3(0.920,0.920,0.920)
 
     water-dots:
         base: polygons
@@ -1025,7 +1025,7 @@ styles:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 18.0
-                DOTS_COLOR: vec3(0.960,0.960,0.960)
+                DOTS_COLOR: vec3(0.980,0.980,0.980)
 
     building-dots:
         base: polygons
@@ -1036,7 +1036,7 @@ styles:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 18.0
-                DOTS_COLOR: vec3(0.740,0.740,0.740)
+                DOTS_COLOR: vec3(0.810,0.810,0.810)
 
     green-area-dots:
         base: polygons
@@ -1069,9 +1069,9 @@ styles:
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 12.0
                 DOTS_SIZE: 0.25
-                DOTS_COLOR: vec3(0.91)
+                DOTS_COLOR: vec3(0.925)
                 DOTS_SIZE2: 0.8
-                DOTS_COLOR2: vec3(0.850,0.850,0.850)
+                DOTS_COLOR2: vec3(0.875,0.875,0.875)
 
     conservation-dots-multi:
         base: polygons

@@ -1014,7 +1014,7 @@ styles:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 18.0
-                DOTS_COLOR: vec3(0.920,0.920,0.920)
+                DOTS_COLOR: vec3(0.930,0.930,0.930)
 
     water-dots:
         base: polygons
@@ -1047,7 +1047,7 @@ styles:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 9.0
-                DOTS_COLOR: vec3(0.910,0.910,0.910)
+                DOTS_COLOR: vec3(0.930,0.930,0.930)
 
     park-dots:
         base: polygons
@@ -1069,9 +1069,9 @@ styles:
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 12.0
                 DOTS_SIZE: 0.25
-                DOTS_COLOR: vec3(0.925)
+                DOTS_COLOR: vec3(0.975)
                 DOTS_SIZE2: 0.8
-                DOTS_COLOR2: vec3(0.875,0.875,0.875)
+                DOTS_COLOR2: vec3(0.935,0.935,0.935)
 
     conservation-dots-multi:
         base: polygons
@@ -1082,9 +1082,9 @@ styles:
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 12.0
                 DOTS_SIZE: 0.05
-                DOTS_COLOR: vec3(0.91)
+                DOTS_COLOR: vec3(0.96)
                 DOTS_SIZE2: 0.7
-                DOTS_COLOR2: vec3(0.860,0.860,0.860)
+                DOTS_COLOR2: vec3(0.920,0.920,0.920)
 
     park-dots-multi:
         base: polygons
@@ -1095,9 +1095,9 @@ styles:
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 12.0
                 DOTS_SIZE: 0.1
-                DOTS_COLOR: vec3(0.94)
+                DOTS_COLOR: vec3(0.95)
                 DOTS_SIZE2: 0.7
-                DOTS_COLOR2: vec3(0.890,0.890,0.890)
+                DOTS_COLOR2: vec3(0.905,0.905,0.905)
 
     polygons_transparent:
         base: polygons

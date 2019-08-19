@@ -1134,7 +1134,7 @@ styles:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 18.0
-                DOTS_COLOR: vec3(0.925,0.925,0.925)
+                DOTS_COLOR: vec3(0.920,0.920,0.920)
 
     water-dots:
         base: polygons

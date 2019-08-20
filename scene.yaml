@@ -19,14 +19,14 @@ global:
     # https://mapzen.com/documentation/overview/#developer-accounts-and-api-keys
     sdk_api_key: '3eqm2_bfTNGZ85ar20fVyA'     # set this value to your Mapzen API key
 
-    black_color:                  [0.810,0.810,0.810]
-    dark_color:                   [0.820,0.820,0.820]
-    mid_color:                    [0.830,0.830,0.830]
-    midlight_color:               [0.840,0.840,0.840]
-    extralight_color:             [0.850,0.850,0.850]
-    light_color:                  [0.860,0.860,0.860]
-    lighter_color:                [0.870,0.870,0.870]
-    lightest_color:               [0.880,0.880,0.880]
+    black_color:                  [0.800,0.800,0.800]
+    dark_color:                   [0.810,0.810,0.810]
+    mid_color:                    [0.820,0.820,0.820]
+    midlight_color:               [0.830,0.830,0.830]
+    extralight_color:             [0.840,0.840,0.840]
+    light_color:                  [0.850,0.850,0.850]
+    lighter_color:                [0.860,0.860,0.860]
+    lightest_color:               [0.870,0.870,0.870]
     ultralight_color:             [0.950,0.950,0.950]
     offwhite_color:               [0.980,0.980,0.980]
     white_color:                  [1.000,1.000,1.000]
@@ -1167,7 +1167,7 @@ styles:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 9.0
-                DOTS_COLOR: vec3(0.910,0.910,0.910)
+                DOTS_COLOR: vec3(0.905,0.905,0.905)
 
     park-dots:
         base: polygons
@@ -1191,7 +1191,7 @@ styles:
                 DOTS_SIZE: 0.25
                 DOTS_COLOR: vec3(0.975)
                 DOTS_SIZE2: 0.8
-                DOTS_COLOR2: vec3(0.935,0.935,0.935)
+                DOTS_COLOR2: vec3(0.905,0.905,0.905)
 
     conservation-dots-multi:
         base: polygons

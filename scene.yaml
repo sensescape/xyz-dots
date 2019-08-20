@@ -1167,7 +1167,7 @@ styles:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 9.0
-                DOTS_COLOR: vec3(0.930,0.930,0.930)
+                DOTS_COLOR: vec3(0.910,0.910,0.910)
 
     park-dots:
         base: polygons
@@ -1204,7 +1204,7 @@ styles:
                 DOTS_SIZE: 0.05
                 DOTS_COLOR: vec3(0.96)
                 DOTS_SIZE2: 0.7
-                DOTS_COLOR2: vec3(0.920,0.920,0.920)
+                DOTS_COLOR2: vec3(0.900,0.900,0.900)
 
     park-dots-multi:
         base: polygons
@@ -1217,7 +1217,7 @@ styles:
                 DOTS_SIZE: 0.1
                 DOTS_COLOR: vec3(0.95)
                 DOTS_SIZE2: 0.7
-                DOTS_COLOR2: vec3(0.905,0.905,0.905)
+                DOTS_COLOR2: vec3(0.885,0.885,0.885)
 
     lines-dots:
         base: lines

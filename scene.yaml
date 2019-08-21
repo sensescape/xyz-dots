@@ -602,9 +602,6 @@ layers:
                 lines:
                     color: global.white_color
                     width: [[14, 0px], [16, 0.15px], [17, 2.5px], [20, 3m]]
-                    # outline:
-                    #     color: [[13, global.light_color], [15, global.lightest_color]]
-                    #     width: [[14, 0.25px], [16, 0.35px], [17, 1px]]
             early:
                 filter:
                     $zoom: { max: 15 }
@@ -619,18 +616,12 @@ layers:
                     lines:
                         color: global.white_color
                         width: [[14, 0px], [16, 0.15px], [17, 2.5px], [20, 3m]]
-                        # outline:
-                        #     color: [[13, global.light_color], [15, global.lightest_color]]
-                        #     width: [[14, 0.25px], [16, 0.35px], [17, 1px]]
             footway:
                 filter: { kind_detail: footway }
                 draw:
                     lines:
                         color: global.white_color
                         width: [[14, 0px], [16, 0.15px], [17, 2.5px], [20, 3m]]
-                        # outline:
-                        #     color: [[13, global.light_color], [15, global.lightest_color]]
-                        #     width: [[14, 0.25px], [16, 0.35px], [17, 1px]]
                 bridge:
                     filter: { is_bridge: true }
                     draw:
@@ -647,26 +638,22 @@ layers:
                         outline:
                             color: global.mid_color
                             cap: butt
-            # labels-path:
-            #     filter: { $zoom: { min: 17 } }
-            #     draw:
-            #         text-blend-order:
-            #             priority: 61
-            #             visible: global.text_visible_path
-            #             text_source: name
-            #             font:
-            #                 fill: global.dark_color
-            #                 size: 12px
-            #                 stroke: { color: global.text_stroke, width: 4px }
+            labels-path:
+                filter: { $zoom: { min: 18 } }
+                draw:
+                    text-blend-order:
+                        priority: 61
+                        visible: true
+                        text_source: name
+                        font:
+                            size: 11px
+                            stroke: { color: global.roads_text_stroke, width: 4px }
         track:
             filter: { kind: path, kind_detail: track }
             draw:
                 lines:
                     color: global.white_color
                     width: [[13, 0px], [16, 0.15px], [17, 2.5px], [20, 4m]]
-                    # outline:
-                    #     color: [[13, global.light_color], [15, global.lightest_color]]
-                    #     width: [[13, 0.25px], [16, 0.5px], [17, 1px]]
             bridge:
                 filter: { is_bridge: true }
                 draw:
@@ -677,17 +664,16 @@ layers:
                             color: [[13, global.light_color], [15, global.black_color]]
                             cap: butt
 
-            # labels-track:
-            #     filter: { $zoom: { min: 17 } }
-            #     draw:
-            #         text-blend-order:
-            #             priority: 61
-            #             visible: global.text_visible_path
-            #             text_source: name
-            #             font:
-            #                 fill: global.dark_color
-            #                 size: 12px
-            #                 stroke: { color: global.text_stroke, width: 4px }
+            labels-track:
+                filter: { $zoom: { min: 18 } }
+                draw:
+                    text-blend-order:
+                        priority: 61
+                        visible: true
+                        text_source: name
+                        font:
+                            size: 11px
+                            stroke: { color: global.roads_text_stroke, width: 4px }
 
         steps:
             filter:
@@ -701,20 +687,16 @@ layers:
                     order: global.feature_order
                     color: [[15, global.light_color], [19, global.lightest_color]]
                     width: [[15, 0.5px], [18, 3px], [19, 1.5m]]
-                    # outline:
-                    #     color: global.offwhite_color
-                    #     width: [[15, 0px], [18, 1px]]
-            # labels-steps:
-            #     filter: { $zoom: { min: 17 } }
-            #     draw:
-            #         text-blend-order:
-            #             priority: 62
-            #             visible: global.text_visible_steps
-            #             text_source: name
-            #             font:
-            #                 fill: global.mid_color
-            #                 size: 11px
-            #                 stroke: { color: global.text_stroke, width: 4px }
+            labels-steps:
+                filter: { $zoom: { min: 18 } }
+                draw:
+                    text-blend-order:
+                        priority: 62
+                        visible: true
+                        text_source: name
+                        font:
+                            size: 11px
+                            stroke: { color: global.roads_text_stroke, width: 4px }
 
     landuse:
         data: { source: mapzen }

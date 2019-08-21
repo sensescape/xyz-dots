@@ -19,14 +19,14 @@ global:
     # https://mapzen.com/documentation/overview/#developer-accounts-and-api-keys
     sdk_api_key: '3eqm2_bfTNGZ85ar20fVyA'     # set this value to your Mapzen API key
 
-    black_color:                  [0.800,0.800,0.800]
-    dark_color:                   [0.810,0.810,0.810]
-    mid_color:                    [0.820,0.820,0.820]
-    midlight_color:               [0.830,0.830,0.830]
-    extralight_color:             [0.840,0.840,0.840]
-    light_color:                  [0.850,0.850,0.850]
-    lighter_color:                [0.860,0.860,0.860]
-    lightest_color:               [0.870,0.870,0.870]
+    black_color:                  [0.760,0.760,0.760]
+    dark_color:                   [0.770,0.770,0.770]
+    mid_color:                    [0.780,0.780,0.780]
+    midlight_color:               [0.790,0.790,0.790]
+    extralight_color:             [0.800,0.800,0.800]
+    light_color:                  [0.810,0.810,0.810]
+    lighter_color:                [0.820,0.820,0.820]
+    lightest_color:               [0.830,0.830,0.830]
     ultralight_color:             [0.950,0.950,0.950]
     offwhite_color:               [0.980,0.980,0.980]
     white_color:                  [1.000,1.000,1.000]
@@ -81,7 +81,6 @@ layers:
         draw:
             polygons:
                 style: earth-dots
-                # style: polygons-dots-multi3
                 order: global.feature_order
                 color: [1.000,1.000,1.000]
 
@@ -790,7 +789,8 @@ layers:
             # default for national forests and more?
             draw:
                 polygons:
-                    style: green-area-dots
+                    style: park-dots
+                    # style: green-area-dots
                     color: [1.000,1.000,1.000]
                     visible: true
             national_park:
@@ -801,9 +801,38 @@ layers:
                         - not: [ protect_class: ['2','3','5','6'], operator: [ "United States National Park Service"] ]
                 draw:
                     polygons:
-                        style: green-area-dots
+                        style: park-dots
+                        # style: green-area-dots
                         color: [1.000,1.000,1.000]
                         visible: true
+
+        farm:
+            filter:
+                kind: [farm, farmland]
+                $zoom: { min: 10}
+            draw:
+                polygons:
+                    style: farm-dots
+                    color: global.offwhite_color
+                    visible: true
+
+        golf_course:
+            filter:
+                kind: golf_course
+            draw:
+                polygons:
+                    style: golf-dots-multi
+                    color: global.lightest_color
+                    visible: true
+
+        hospital:
+            filter:
+                kind: hospital
+            draw:
+                polygons:
+                    style: hospital-dots-multi
+                    color: global.lightest_color
+                    visible: true
 
     buildings:
         data: { source: mapzen, layer: buildings }
@@ -1120,6 +1149,10 @@ styles:
     lines_transparent:
         base: lines
         blend: overlay
+
+    polygons_transparent:
+        base: polygons
+        blend: overlay
                     
     text-blend-order:
         base: text
@@ -1178,7 +1211,19 @@ styles:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 12.0
-                DOTS_COLOR: vec3(0.840,0.840,0.840)
+                DOTS_COLOR: vec3(0.905,0.905,0.905)
+
+    farm-dots:
+        base: polygons
+        mix: [polygons-dots]
+        shaders:
+            defines:
+                DOTS_SIZE: 0.2
+                DOTS_TYPE: fill
+                DOTS_BACKGROUND_COLOR: vec3(0.965,0.965,0.965)
+                DOTS_TILE_STYLE: tile
+                DOTS_SCALE: 18.0
+                DOTS_COLOR: vec3(0.925,0.925,0.925)
 
     forest-dots-multi:
         base: polygons
@@ -1191,7 +1236,7 @@ styles:
                 DOTS_SIZE: 0.25
                 DOTS_COLOR: vec3(0.975)
                 DOTS_SIZE2: 0.8
-                DOTS_COLOR2: vec3(0.905,0.905,0.905)
+                DOTS_COLOR2: vec3(0.885,0.885,0.885)
 
     conservation-dots-multi:
         base: polygons
@@ -1215,9 +1260,38 @@ styles:
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 12.0
                 DOTS_SIZE: 0.1
-                DOTS_COLOR: vec3(0.95)
+                DOTS_COLOR: vec3(0.94)
                 DOTS_SIZE2: 0.7
                 DOTS_COLOR2: vec3(0.885,0.885,0.885)
+
+    golf-dots-multi:
+        base: polygons
+        mix: [polygons-dots-multi]
+        shaders:
+            defines:
+                DOTS_TYPE: fill
+                DOTS_TILE_STYLE: tile
+                DOTS_SCALE: 12.0
+                DOTS_SIZE: 0.07
+                DOTS_COLOR: vec3(0.865)
+                DOTS_SIZE2: 0.8
+                DOTS_COLOR2: vec3(0.945,0.945,0.945)
+
+    hospital-dots-multi:
+        base: polygons
+        mix: [polygons-dots-multi3]
+        shaders:
+            defines:
+                DOTS_TYPE: fill
+                DOTS_TILE_STYLE: tile
+                DOTS_SCALE: 12.0
+                DOTS_COLOR: vec3(0.890,0.890,0.890)
+                DOTS_COLOR2: vec3(0.880,0.880,0.880)
+                DOTS_COLOR3: vec3(0.980,0.980,0.980)
+                DOTS_SIZE: 0.15
+                DOTS_SIZE2: 0.5
+                DOTS_SIZE3: 0.9
+
 
     lines-dots:
         base: lines
@@ -1250,10 +1324,6 @@ styles:
                             min: 0.0
                             step: 0.01
                         type: number
-
-    polygons_transparent:
-        base: polygons
-        blend: overlay
 
     polygons-dots:
         doc:

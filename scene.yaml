@@ -31,6 +31,9 @@ global:
     offwhite_color:               [0.980,0.980,0.980]
     white_color:                  [1.000,1.000,1.000]
 
+    roads_text_fill:              [0.600,0.600,0.600]
+    roads_text_stroke:            [0.980,0.980,0.980]
+
     text_font_family: 'Orbitron'
 
     ux_language_text_source: |
@@ -185,7 +188,7 @@ layers:
                 font:
                     family: Cairo
                     weight: normal
-                    fill: global.black_color
+                    fill: global.roads_text_fill
 
         early:
             filter: { $zoom: { max: 15 } }
@@ -293,15 +296,14 @@ layers:
             labels-highway-z14:
                 filter: { $zoom: { min: 15 } }
                 draw:
-                    text:
+                    text-blend-order:
                         priority: 50
                         text_source: global.ux_language_text_source
                         visible: true
                         font:
                             family: Aldrich
                             size: [[15,12px],[20,14px]]
-                            fill: [0.550,0.550,0.550]
-                            stroke: { color: [1.000,1.000,1.000], width: 6px }
+                            stroke: { color: global.roads_text_stroke, width: 6px }
 
         major_road:
             filter: { kind: major_road, $zoom: { min: 8 } }
@@ -367,31 +369,28 @@ layers:
                                 font:
                                     family: Aldrich
                                     size: [[15,12px],[20,14px]]
-                                    fill: [0.550,0.550,0.550]
-                                    stroke: { color: [0.980,0.980,0.980], width: 4px }
+                                    stroke: { color: global.roads_text_stroke, width: 4px }
                 labels-trunk-primary-z14:
                     filter: { $zoom: 14 }
                     draw:
-                        text:
+                        text-blend-order:
                             priority: 51
                             text_source: global.ux_language_text_source
                             visible: true
                             font:
                                 size: 10px
-                                fill: [0.550,0.550,0.550]
-                                stroke: { color: [0.980,0.980,0.980], width: 3px }
+                                stroke: { color: global.roads_text_stroke, width: 3px }
 
                 labels-trunk-primary-z15:
                     filter: { $zoom: { min: 15 } }
                     draw:
-                        text:
+                        text-blend-order:
                             priority: 51
                             text_source: global.ux_language_text_source_road_ref_and_name_short
                             visible: true
                             font:
                                 size: [[15,13px],[18,14px]]
-                                fill: [0.550,0.550,0.550]
-                                stroke: { color: [0.980,0.980,0.980], width: [[15, 4px], [17, 6px]] }
+                                stroke: { color: global.roads_text_stroke, width: [[15, 4px], [17, 6px]] }
             link:
                 filter: { is_link: true } # on- and off-ramps, etc
                 draw:
@@ -456,8 +455,7 @@ layers:
                                 text_source: global.ux_language_text_source_road_ref_and_name_short
                                 font:
                                     size: [[13,10px],[15,13px],[18,14px]]
-                                    fill: [0.550,0.550,0.550]
-                                    stroke: { color: [0.980,0.980,0.980], width: 4px }
+                                    stroke: { color: global.roads_text_stroke, width: 4px }
                 labels-secondary:
                     filter: { $zoom: { min: 13 } }
                     draw:
@@ -467,8 +465,7 @@ layers:
                             text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 size: [[15,13px],[18,14px]]
-                                fill: [0.550,0.550,0.550]
-                                stroke: { color: [0.980,0.980,0.980], width: 4px }
+                                stroke: { color: global.roads_text_stroke, width: 4px }
             tertiary:
                 filter: { kind_detail: [tertiary, tertiary_link] }
                 draw:
@@ -526,8 +523,7 @@ layers:
                             text_source: global.ux_language_text_source_road_ref_and_name_short
                             font:
                                 size: [[15,10px],[18,14px]]
-                                fill: [0.550,0.550,0.550]
-                                stroke: { color: [0.980,0.980,0.980], width: 5px }
+                                stroke: { color: global.roads_text_stroke, width: 5px }
         minor_road:
             filter: { kind: minor_road, not: { kind_detail: service }, $zoom: { min: 8 } }
             draw:
@@ -575,8 +571,7 @@ layers:
                         text_source: name
                         font:
                             size: [[15,10px],[18,14px]]
-                            fill: [0.550,0.550,0.550]
-                            stroke: { color: [0.980,0.980,0.980], width: 4px }
+                            stroke: { color: global.roads_text_stroke, width: 4px }
         service_road:
             filter: { kind: minor_road, kind_detail: service, $zoom: { min: 13 } }
             draw:
@@ -595,8 +590,7 @@ layers:
                         text_source: name
                         font:
                             size: [[15,10px], [18,14px]]
-                            fill: [0.550,0.550,0.550]
-                            stroke: { color: [0.980,0.980,0.980], width: 4px }
+                            stroke: { color: global.roads_text_stroke, width: 4px }
 
         path:
             filter:

@@ -294,7 +294,7 @@ layers:
                             cap: butt
 
             labels-highway-z14:
-                filter: { $zoom: { min: 15 } }
+                filter: { $zoom: { min: 14 } }
                 draw:
                     text-blend-order:
                         priority: 50
@@ -359,8 +359,8 @@ layers:
                                 color: [[13, global.light_color], [14, global.ultralight_color]]
                                 outline:
                                     color: [[12, global.white_color], [13, global.light_color]]
-                    labels-trunk_primary-route-z13-z14:
-                        filter: { $zoom: [13,14] }
+                    labels-trunk_primary-route-z14:
+                        filter: { $zoom: { min: 14 } }
                         draw:
                             text-blend-order:
                                 priority: 51
@@ -457,7 +457,7 @@ layers:
                                     size: [[13,10px],[15,13px],[18,14px]]
                                     stroke: { color: global.roads_text_stroke, width: 4px }
                 labels-secondary:
-                    filter: { $zoom: { min: 13 } }
+                    filter: { $zoom: { min: 15 } }
                     draw:
                         text-blend-order:
                             priority: 56

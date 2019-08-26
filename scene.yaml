@@ -19,17 +19,30 @@ global:
     # https://mapzen.com/documentation/overview/#developer-accounts-and-api-keys
     sdk_api_key: '3eqm2_bfTNGZ85ar20fVyA'     # set this value to your Mapzen API key
 
-    black_color:                  [0.760,0.760,0.760]
-    dark_color:                   [0.770,0.770,0.770]
-    mid_color:                    [0.780,0.780,0.780]
-    midlight_color:               [0.790,0.790,0.790]
-    extralight_color:             [0.800,0.800,0.800]
-    light_color:                  [0.810,0.810,0.810]
-    lighter_color:                [0.820,0.820,0.820]
-    lightest_color:               [0.830,0.830,0.830]
-    ultralight_color:             [0.950,0.950,0.950]
-    offwhite_color:               [0.980,0.980,0.980]
-    white_color:                  [1.000,1.000,1.000]
+    # black_color:                  [0.740,0.740,0.740]
+    # dark_color:                   [0.750,0.750,0.750]
+    # mid_color:                    [0.760,0.760,0.760]
+    # midlight_color:               [0.770,0.770,0.770]
+    # extralight_color:             [0.780,0.780,0.780]
+    # light_color:                  [0.790,0.790,0.790]
+    # lighter_color:                [0.800,0.800,0.800]
+    # lightest_color:               [0.940,0.940,0.940]
+    # ultralight_color:             [0.950,0.950,0.950]
+    # offwhite_color:               [0.980,0.980,0.980]
+    # white_color:                  [1.000,1.000,1.000]
+
+
+    black_color:                  [1.000,1.000,1.000]
+    dark_color:                   [0.995,0.995,0.995]
+    mid_color:                    [0.990,0.990,0.990]
+    midlight_color:               [0.985,0.985,0.985]
+    extralight_color:             [0.980,0.980,0.980]
+    light_color:                  [0.975,0.975,0.975]
+    lighter_color:                [0.970,0.970,0.970]
+    lightest_color:               [0.965,0.965,0.965]
+    ultralight_color:             [0.960,0.960,0.960]
+    offwhite_color:               [0.955,0.955,0.955]
+    white_color:                  [0.950,0.950,0.950]
 
     roads_text_fill:              [0.600,0.600,0.600]
     roads_text_stroke:            [0.980,0.980,0.980]
@@ -778,7 +791,6 @@ layers:
             draw:
                 polygons:
                     style: park-dots
-                    # style: green-area-dots
                     color: [1.000,1.000,1.000]
                     visible: true
             national_park:
@@ -790,7 +802,6 @@ layers:
                 draw:
                     polygons:
                         style: park-dots
-                        # style: green-area-dots
                         color: [1.000,1.000,1.000]
                         visible: true
 
@@ -1223,7 +1234,7 @@ styles:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 18.0
-                DOTS_COLOR: vec3(0.940,0.940,0.940)
+                DOTS_COLOR: vec3(0.890,0.890,0.890)
 
     water-dots:
         base: polygons
@@ -1245,7 +1256,7 @@ styles:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 18.0
-                DOTS_COLOR: vec3(0.770,0.770,0.770)
+                DOTS_COLOR: vec3(0.810,0.810,0.810)
 
     green-area-dots:
         base: polygons
@@ -1256,7 +1267,7 @@ styles:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 18.0
-                DOTS_COLOR: vec3(0.905,0.905,0.905)
+                DOTS_COLOR: vec3(0.865,0.865,0.865)
 
     park-dots:
         base: polygons
@@ -1267,7 +1278,7 @@ styles:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 18.0
-                DOTS_COLOR: vec3(0.920,0.920,0.920)
+                DOTS_COLOR: vec3(0.875,0.875,0.875)
 
     farm-dots:
         base: polygons
@@ -1276,10 +1287,10 @@ styles:
             defines:
                 DOTS_SIZE: 0.2
                 DOTS_TYPE: fill
-                DOTS_BACKGROUND_COLOR: vec3(0.975,0.975,0.975)
+                DOTS_BACKGROUND_COLOR: vec3(0.925,0.925,0.925)
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 18.0
-                DOTS_COLOR: vec3(0.925,0.925,0.925)
+                DOTS_COLOR: vec3(0.890,0.890,0.890)
 
     cemetery-dots:
         base: polygons
@@ -1288,7 +1299,7 @@ styles:
             defines:
                 DOTS_SIZE: 0.1
                 DOTS_TYPE: fill
-                DOTS_BACKGROUND_COLOR: vec3(0.950,0.950,0.950)
+                DOTS_BACKGROUND_COLOR: vec3(0.915,0.915,0.915)
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 18.0
                 DOTS_COLOR: vec3(0.885,0.885,0.885)
@@ -1302,9 +1313,9 @@ styles:
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 18.0
                 DOTS_SIZE: 0.25
-                DOTS_COLOR: vec3(0.975)
+                DOTS_COLOR: vec3(0.925)
                 DOTS_SIZE2: 0.8
-                DOTS_COLOR2: vec3(0.915,0.915,0.915)
+                DOTS_COLOR2: vec3(0.890,0.890,0.890)
 
     conservation-dots-multi:
         base: polygons
@@ -1315,9 +1326,9 @@ styles:
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 18.0
                 DOTS_SIZE: 0.05
-                DOTS_COLOR: vec3(0.96)
+                DOTS_COLOR: vec3(0.93)
                 DOTS_SIZE2: 0.7
-                DOTS_COLOR2: vec3(0.910,0.910,0.910)
+                DOTS_COLOR2: vec3(0.865,0.865,0.865)
 
     park-dots-multi:
         base: polygons
@@ -1328,22 +1339,23 @@ styles:
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 18.0
                 DOTS_SIZE: 0.1
-                DOTS_COLOR: vec3(0.94)
+                DOTS_COLOR: vec3(0.935)
                 DOTS_SIZE2: 0.7
-                DOTS_COLOR2: vec3(0.915,0.915,0.915)
+                DOTS_COLOR2: vec3(0.885,0.885,0.885)
 
     golf-dots-multi:
         base: polygons
         mix: [polygons-dots-multi]
         shaders:
             defines:
+                DOTS_BACKGROUND_COLOR: vec3(0.910)
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 18.0
                 DOTS_SIZE: 0.09
-                DOTS_COLOR: vec3(0.895)
-                DOTS_SIZE2: 0.8
-                DOTS_COLOR2: vec3(0.955,0.955,0.955)
+                DOTS_COLOR: vec3(0.920)
+                DOTS_SIZE2: 0.4
+                DOTS_COLOR2: vec3(0.875,0.875,0.875)
 
     hospital-dots-multi:
         base: polygons
@@ -1355,7 +1367,7 @@ styles:
                 DOTS_SCALE: 18.0
                 DOTS_COLOR: vec3(0.890,0.890,0.890)
                 DOTS_COLOR2: vec3(0.880,0.880,0.880)
-                DOTS_COLOR3: vec3(0.980,0.980,0.980)
+                DOTS_COLOR3: vec3(0.950,0.950,0.950)
                 DOTS_SIZE: 0.15
                 DOTS_SIZE2: 0.5
                 DOTS_SIZE3: 0.9
@@ -1448,8 +1460,8 @@ styles:
         shaders:
             defines:
                 DOTS_COLOR: color.rgb*.5
-                DOTS_BACKGROUND_COLOR: vec3(0.975,0.975,0.975)
-                DOTS_SCALE: 10.
+                DOTS_BACKGROUND_COLOR: vec3(0.935,0.935,0.935)
+                DOTS_SCALE: 9.
                 DOTS_SIZE: 0.41
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: brick
@@ -1464,7 +1476,7 @@ styles:
         mix: [space-tile, tiling-brick, tiling-tile, shapes-circle]
         shaders:
             defines:
-                DOTS_BACKGROUND_COLOR: vec3(0.975)
+                DOTS_BACKGROUND_COLOR: vec3(0.950)
                 DOTS_COLOR: vec3(0.8, 0.8, 0.)
                 DOTS_COLOR2: vec3(0.5, 0., 0.)
                 DOTS_SIZE: 0.1
@@ -1489,7 +1501,7 @@ styles:
         mix: [space-tile, tiling-brick, tiling-tile, shapes-circle]
         shaders:
             defines:
-                DOTS_BACKGROUND_COLOR: vec3(0.975)
+                DOTS_BACKGROUND_COLOR: vec3(0.945)
                 DOTS_COLOR: vec3(0.8, 0.8, 0.)
                 DOTS_COLOR2: vec3(1.0, 0.0, 0.)
                 DOTS_COLOR3: vec3(0.0, 1.0, 1.0)

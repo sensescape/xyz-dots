@@ -700,6 +700,8 @@ layers:
 
     landuse:
         data: { source: mapzen }
+        filter: 
+            $zoom: { min: 7 }
         draw:
             polygons:
                 order: global.feature_order
@@ -1221,7 +1223,7 @@ styles:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 18.0
-                DOTS_COLOR: vec3(0.920,0.920,0.920)
+                DOTS_COLOR: vec3(0.950,0.950,0.950)
 
     water-dots:
         base: polygons
@@ -1232,7 +1234,7 @@ styles:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 18.0
-                DOTS_COLOR: vec3(0.980,0.980,0.980)
+                DOTS_COLOR: vec3(1.000,1.000,1.000)
 
     building-dots:
         base: polygons
@@ -1250,10 +1252,10 @@ styles:
         mix: [polygons-dots]
         shaders:
             defines:
-                DOTS_SIZE: 0.7
+                DOTS_SIZE: 0.5
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
-                DOTS_SCALE: 9.0
+                DOTS_SCALE: 18.0
                 DOTS_COLOR: vec3(0.905,0.905,0.905)
 
     park-dots:
@@ -1264,8 +1266,8 @@ styles:
                 DOTS_SIZE: 0.8
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
-                DOTS_SCALE: 12.0
-                DOTS_COLOR: vec3(0.905,0.905,0.905)
+                DOTS_SCALE: 18.0
+                DOTS_COLOR: vec3(0.920,0.920,0.920)
 
     farm-dots:
         base: polygons
@@ -1288,7 +1290,7 @@ styles:
                 DOTS_TYPE: fill
                 DOTS_BACKGROUND_COLOR: vec3(0.950,0.950,0.950)
                 DOTS_TILE_STYLE: tile
-                DOTS_SCALE: 20.0
+                DOTS_SCALE: 18.0
                 DOTS_COLOR: vec3(0.885,0.885,0.885)
 
     forest-dots-multi:
@@ -1298,7 +1300,7 @@ styles:
             defines:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
-                DOTS_SCALE: 12.0
+                DOTS_SCALE: 18.0
                 DOTS_SIZE: 0.25
                 DOTS_COLOR: vec3(0.975)
                 DOTS_SIZE2: 0.8
@@ -1311,7 +1313,7 @@ styles:
             defines:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
-                DOTS_SCALE: 12.0
+                DOTS_SCALE: 18.0
                 DOTS_SIZE: 0.05
                 DOTS_COLOR: vec3(0.96)
                 DOTS_SIZE2: 0.7
@@ -1324,7 +1326,7 @@ styles:
             defines:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
-                DOTS_SCALE: 12.0
+                DOTS_SCALE: 18.0
                 DOTS_SIZE: 0.1
                 DOTS_COLOR: vec3(0.94)
                 DOTS_SIZE2: 0.7
@@ -1337,7 +1339,7 @@ styles:
             defines:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
-                DOTS_SCALE: 12.0
+                DOTS_SCALE: 18.0
                 DOTS_SIZE: 0.07
                 DOTS_COLOR: vec3(0.865)
                 DOTS_SIZE2: 0.8
@@ -1350,7 +1352,7 @@ styles:
             defines:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
-                DOTS_SCALE: 12.0
+                DOTS_SCALE: 18.0
                 DOTS_COLOR: vec3(0.890,0.890,0.890)
                 DOTS_COLOR2: vec3(0.880,0.880,0.880)
                 DOTS_COLOR3: vec3(0.980,0.980,0.980)
@@ -1446,7 +1448,7 @@ styles:
         shaders:
             defines:
                 DOTS_COLOR: color.rgb*.5
-                DOTS_BACKGROUND_COLOR: vec3(1.000,1.000,1.000)
+                DOTS_BACKGROUND_COLOR: vec3(0.980,0.980,0.980)
                 DOTS_SCALE: 10.
                 DOTS_SIZE: 0.41
                 DOTS_TYPE: fill

@@ -1202,11 +1202,11 @@ layers:
                     text_wrap: 10
                     max_lines: 2
                     font:
-                        fill: [0.700,0.700,0.700]
+                        fill: [0.550,0.550,0.550]
                         size: [[11, 9px], [12, 10px], [13, 12px], [14, 16px], [16, 24px]]
                         weight: normal
                         transform: uppercase
-                        stroke: { color: [1.000,1.000,1.000], width: [[12, 4px], [13, 6px], [15, 8px]] }
+                        stroke: { color: [0.950,0.950,0.950], width: [[12, 4px], [13, 6px], [15, 8px]] }
 
             z13-up:
                 filter:

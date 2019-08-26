@@ -1259,11 +1259,12 @@ styles:
         mix: [polygons-dots]
         shaders:
             defines:
+                DOTS_BACKGROUND_COLOR: vec3(0.925,0.925,0.925)
                 DOTS_SIZE: 0.7
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 18.0
-                DOTS_COLOR: vec3(0.890,0.890,0.890)
+                DOTS_COLOR: vec3(0.870,0.870,0.870)
 
     water-dots:
         base: polygons
@@ -1275,7 +1276,7 @@ styles:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 18.0
-                DOTS_COLOR: vec3(1.000,1.000,1.000)
+                DOTS_COLOR: vec3(0.980,0.980,0.980)
 
     building-dots:
         base: polygons
@@ -1308,7 +1309,7 @@ styles:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 18.0
-                DOTS_COLOR: vec3(0.875,0.875,0.875)
+                DOTS_COLOR: vec3(0.855,0.855,0.855)
 
     farm-dots:
         base: polygons
@@ -1317,10 +1318,10 @@ styles:
             defines:
                 DOTS_SIZE: 0.2
                 DOTS_TYPE: fill
-                DOTS_BACKGROUND_COLOR: vec3(0.925,0.925,0.925)
+                DOTS_BACKGROUND_COLOR: vec3(0.905,0.905,0.905)
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 18.0
-                DOTS_COLOR: vec3(0.890,0.890,0.890)
+                DOTS_COLOR: vec3(0.880,0.880,0.880)
 
     cemetery-dots:
         base: polygons

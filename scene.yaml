@@ -850,7 +850,7 @@ layers:
         draw:
             polygons:
                 visible: false
-                order: 329
+                order: 438
                 color: [1.000,1.000,1.000]
 
         footprints:
@@ -868,6 +868,35 @@ layers:
                 polygons:
                     visible: true
                     style: building-dots
+
+        in_university:
+            filter: { landuse_kind: [university,school] }
+            draw:
+                polygons:
+                    visible: true
+                    style: building-dots-multi
+
+        in_hospital:
+            filter: { landuse_kind: hospital }
+            draw:
+                polygons:
+                    visible: true
+                    style: building-dots-multi
+
+        in_airport:
+            filter: { landuse_kind: [aerodrome, runway, taxiway] }
+            draw:
+                polygons:
+                    visible: true
+                    style: building-dots-multi
+
+        in_park:
+            filter:
+                landuse_kind: [park,forest,nature_reserve,conservation,golf_course,garden]
+            draw:
+                polygons:
+                    visible: true
+                    style: building-dots-multi
 
     boundaries:
         data: { source: mapzen, layer: boundaries }
@@ -1241,6 +1270,7 @@ styles:
         mix: [polygons-dots]
         shaders:
             defines:
+                DOTS_BACKGROUND_COLOR: vec3(0.925,0.925,0.925)
                 DOTS_SIZE: 0.7
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
@@ -1256,7 +1286,7 @@ styles:
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile
                 DOTS_SCALE: 18.0
-                DOTS_COLOR: vec3(0.810,0.810,0.810)
+                DOTS_COLOR: vec3(0.800,0.800,0.800)
 
     green-area-dots:
         base: polygons
@@ -1368,6 +1398,22 @@ styles:
                 DOTS_COLOR: vec3(0.890,0.890,0.890)
                 DOTS_COLOR2: vec3(0.880,0.880,0.880)
                 DOTS_COLOR3: vec3(0.950,0.950,0.950)
+                DOTS_SIZE: 0.15
+                DOTS_SIZE2: 0.5
+                DOTS_SIZE3: 0.9
+
+    building-dots-multi:
+        base: polygons
+        mix: [polygons-dots-multi3]
+        shaders:
+            defines:
+                DOTS_BACKGROUND_COLOR: vec3(0.810)
+                DOTS_TYPE: fill
+                DOTS_TILE_STYLE: tile
+                DOTS_SCALE: 18.0
+                DOTS_COLOR: vec3(0.730,0.730,0.730)
+                DOTS_COLOR2: vec3(0.720,0.720,0.720)
+                DOTS_COLOR3: vec3(0.810,0.810,0.810)
                 DOTS_SIZE: 0.15
                 DOTS_SIZE2: 0.5
                 DOTS_SIZE3: 0.9

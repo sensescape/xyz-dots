@@ -1598,6 +1598,7 @@ styles:
         mix: [polygons-dots]
         shaders:
             defines:
+                DOTS_BACKGROUND_COLOR: vec3(0.925,0.925,0.925)
                 DOTS_SIZE: 0.8
                 DOTS_TYPE: fill
                 DOTS_TILE_STYLE: tile

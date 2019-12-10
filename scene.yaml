@@ -951,7 +951,9 @@ layers:
             draw:
                 polygons:
                     style: golf-dots-multi
+                    # style: concentric-dots-dataviz
                     color: global.lightest_color
+                    # color: green
                     visible: true
 
         hospital:
@@ -1702,6 +1704,19 @@ styles:
                 DOTS_SIZE2: 0.4
                 DOTS_COLOR2: vec3(0.875,0.875,0.875)
 
+    concentric-dots-dataviz:
+        base: polygons
+        mix: [polygons-dots-concentric-inlay]
+        blend: inlay
+        shaders:
+            defines:
+                DOTS_TYPE: fill
+                DOTS_TILE_STYLE: tile
+                DOTS_SCALE: 6.0
+                DOTS_SIZE: 0.09
+                DOTS_SIZE2: 0.2
+                DOTS_SIZE3: 0.7
+
     hospital-dots-multi:
         base: polygons
         mix: [polygons-dots-multi3]
@@ -1912,6 +1927,31 @@ styles:
                                 DOTS_TYPE(DOTS_SIZE, circleDF(vec2(0.5)-DOTS_TILE_STYLE(getTileCoords()*DOTS_SCALE,2.)))
                             ),
                             DOTS_TYPE(DOTS_SIZE2, circleDF(vec2(0.5)-DOTS_TILE_STYLE(getTileCoords()*DOTS_SCALE,2.)))
+                        );
+
+    polygons-dots-concentric-inlay:
+        base: polygons
+        mix: [space-tile, tiling-brick, tiling-tile, shapes-circle]
+        shaders:
+            defines:
+                DOTS_SIZE: 0.1
+                DOTS_SIZE2: 0.4
+                DOTS_SIZE3: 0.9
+                DOTS_SCALE: 24.
+                DOTS_TYPE: fill
+                DOTS_TILE_STYLE: brick
+            blocks:
+                color: |
+                    color =
+                        mix(vec4(0.950,0.950,0.950,0.5),
+                            mix(color,
+                                mix(vec4(0.950,0.950,0.950,0.5),
+                                color,
+                                DOTS_TYPE(DOTS_SIZE, circleDF(vec2(0.5)-DOTS_TILE_STYLE(getTileCoords()*DOTS_SCALE,2.)))
+                            ),
+                                DOTS_TYPE(DOTS_SIZE2, circleDF(vec2(0.5)-DOTS_TILE_STYLE(getTileCoords()*DOTS_SCALE,2.)))
+                            ),
+                            DOTS_TYPE(DOTS_SIZE3, circleDF(vec2(0.5)-DOTS_TILE_STYLE(getTileCoords()*DOTS_SCALE,2.)))
                         );
 
 

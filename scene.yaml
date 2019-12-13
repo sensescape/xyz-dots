@@ -951,6 +951,9 @@ layers:
             draw:
                 polygons:
                     style: golf-dots-multi
+                    # style: polygons-dots-offset
+                    # style: dots-rev
+                    # style: polygons-dots-pattern
                     # style: concentric-dots-dataviz
                     color: global.lightest_color
                     # color: green
@@ -1782,15 +1785,6 @@ styles:
                         type: number
 
     polygons-dots:
-        doc:
-            author:
-                name: Patricio Gonzalez Vivo
-                twitter: patriciogv
-            version: 0.0.1
-            tangram-version: 0.0.7
-            licence: MIT
-            description: |
-                Apply dot patterns to a polygon. To learn more about patterns check [this chapter from the Book of Shaders](https://thebookofshaders.com/09/)
         ui:
             shaders:
                 defines:
@@ -1905,6 +1899,25 @@ styles:
                                     color,
                                     DOTS_TYPE( DOTS_SIZE, circleDF(vec2(0.5)-DOTS_TILE_STYLE(getTileCoords()*DOTS_SCALE,2.0))) );
 
+    polygons-dots-offset:
+        base: polygons
+        mix: [space-tile, tiling-brick, tiling-tile, shapes-circle]
+        shaders:
+            defines:
+                DOTS_BACKGROUND_COLOR: vec3(0.950)
+                DOTS_COLOR: vec3(1.000,0.000,0.000)
+                DOTS_COLOR2: vec3(0.5, 0., 0.)
+                DOTS_SIZE: 0.4
+                DOTS_SIZE2: 0.4
+                DOTS_SCALE: 2.
+                DOTS_TYPE: fill
+                DOTS_TILE_STYLE: brick
+            blocks:
+                color: |
+                    color.rgb = mix(DOTS_BACKGROUND_COLOR,
+                                    DOTS_COLOR,
+                                    DOTS_TYPE( DOTS_SIZE, circleDF(vec2(0.5)-DOTS_TILE_STYLE(getTileCoords()*DOTS_SCALE,2.))) );
+
     polygons-dots-multi:
         base: polygons
         mix: [space-tile, tiling-brick, tiling-tile, shapes-circle]
@@ -1927,6 +1940,31 @@ styles:
                                 DOTS_TYPE(DOTS_SIZE, circleDF(vec2(0.5)-DOTS_TILE_STYLE(getTileCoords()*DOTS_SCALE,2.)))
                             ),
                             DOTS_TYPE(DOTS_SIZE2, circleDF(vec2(0.5)-DOTS_TILE_STYLE(getTileCoords()*DOTS_SCALE,2.)))
+                        );
+
+    polygons-dots-pattern:
+        base: polygons
+        mix: [space-tile, tiling-brick, tiling-tile, shapes-circle]
+        shaders:
+            defines:
+                DOTS_BACKGROUND_COLOR: vec3(0.950)
+                DOTS_COLOR: vec3(0.0, 0.0, 1.0)
+                DOTS_COLOR2: vec3(1.0, 0., 0.)
+                DOTS_SIZE: 0.5
+                DOTS_SIZE2: 0.75
+                DOTS_SCALE: 9.
+                DOTS_TYPE: fill
+                DOTS_TILE_STYLE1: tile
+                DOTS_TILE_STYLE2: brick
+            blocks:
+                color: |
+                    color.rgb =
+                        mix(DOTS_BACKGROUND_COLOR,
+                            mix(DOTS_COLOR2,
+                                DOTS_COLOR,
+                                DOTS_TYPE(DOTS_SIZE, circleDF(vec2(0.5)-DOTS_TILE_STYLE1(getTileCoords()*DOTS_SCALE,2.)))
+                            ),
+                            DOTS_TYPE(DOTS_SIZE2, circleDF(vec2(0.5)-DOTS_TILE_STYLE2(getTileCoords()*DOTS_SCALE,2.)))
                         );
 
     polygons-dots-concentric-inlay:
@@ -2177,4 +2215,44 @@ styles:
                         #else
                             return step(threshold, value);
                         #endif
+                    }
+
+    dots-rev:
+        base: polygons
+        mix: dots-honeycomb
+        shaders:
+            defines:
+                COLOR1: vec3(1.00,0.00,0.00)
+                PATTERN_SCALE: 9.0
+            blocks:
+                color: |
+                    color.rgb = mix(COLOR1, color.rgb, TileDots(PATTERN_SCALE, 0.31));
+
+    dots-honeycomb:
+        mix: [space-tile, tiling-brick, shapes-circle]
+        shaders:
+            blocks:
+                global: |
+                    // Interpolated dot patern between zooms attached to tile coords
+                    float TileDots(float scale, float size) {
+                        // Beginning of the transition
+                        vec2 IN = brick(getTileCoords()*scale,2.);
+                        float A = circleDF(vec2(0.5)-IN)*1.8;
+                        //
+                        // If over 18. add an end B to transition with
+                        float d = 0.0;
+                        if (u_map_position.z < 18.) {
+                            vec2 OUT = fract(getTileCoords()*scale*2.);
+                            float B = circleDF(vec2(0.25)-OUT)*5.;
+                            B = min(B, circleDF(vec2(0.75,0.25)-OUT)*5.);
+                            B = min(B, circleDF(vec2(0.5,0.75)-OUT)*5.);
+                            B = min(B, circleDF(vec2(0.,0.75)-OUT)*5.);
+                            B = min(B, circleDF(vec2(1.,0.75)-OUT)*5.);
+                            d = mix(A, B, pow(fract(u_map_position.z),10.));
+                        } else {
+                            d = A;
+                        }
+                        //
+                        // Use the antialias step to make a shape from the DF
+                        return aastep(size,d);;
                     }
